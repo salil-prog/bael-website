@@ -16,16 +16,22 @@
   a { color: #1eae42; text-decoration: none; }
   a:hover { color: #14204a; }
   ::selection { background: #2fbe4f; color: #fff; }
+  @media (max-width: 720px) {
+    [data-r="navbar"] { height: auto !important; flex-wrap: wrap !important; padding: 14px 20px !important; row-gap: 10px !important; }
+    [data-r="navlinks"] { flex-wrap: wrap !important; gap: 14px 20px !important; }
+    [data-r="lhead"] { display: none !important; }
+    [data-r="lrow"] { grid-template-columns: 1fr !important; gap: 16px !important; padding: 28px 20px !important; }
+  }
 </style>
 </helmet>
 
-<div style="min-width: 1100px; background: #f7f8f5">
+<div style="background: #f7f8f5; overflow-x: hidden">
 
   <!-- NAV -->
   <header data-screen-label="Nav" style="position: sticky; top: 0; z-index: 50; background: rgba(20,32,74,0.96); backdrop-filter: blur(12px)">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; height: 76px; display: flex; align-items: center; justify-content: space-between">
+    <div data-r="navbar" style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); height: 76px; display: flex; align-items: center; justify-content: space-between">
       <a href="index.html" style="display: block"><img src="assets/bael-logo-green.png" alt="Bael Technology" style="height: 42px; display: block"></a>
-      <nav style="display: flex; align-items: center; gap: 36px">
+      <nav data-r="navlinks" style="display: flex; align-items: center; gap: 36px">
         <a href="index.html" style="font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.75)" style-hover="color: #2fbe4f">Home</a>
         <a href="expertise.html" style="font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.75)" style-hover="color: #2fbe4f">Expertise</a>
         <a href="domains.html" style="font-size: 14.5px; font-weight: 600; color: #fff">Domains</a>
@@ -36,22 +42,22 @@
 
   <!-- PAGE HERO -->
   <section data-screen-label="Domains Hero" style="background: #14204a; color: #fff">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 80px 40px">
+    <div style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 88px) clamp(20px, 5vw, 40px) clamp(52px, 7vw, 80px)">
       <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #2fbe4f; margin-bottom: 18px">Domains</div>
-      <h1 style="margin: 0 0 24px 0; font-size: 54px; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; max-width: 760px; text-wrap: balance">Modern cooking and mobility</h1>
+      <h1 style="margin: 0 0 24px 0; font-size: clamp(34px, 7vw, 54px); line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; max-width: 760px; text-wrap: balance">Modern cooking and mobility</h1>
       <p style="margin: 0; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.78); max-width: 640px">The product categories where we design, build and scale hardware.</p>
     </div>
   </section>
 
   <!-- MODERN COOKING -->
   <section id="cooking" data-screen-label="Modern Cooking" style="background: #f7f8f5">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 96px 40px 96px 40px">
+    <div style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(20px, 5vw, 40px)">
       <div style="margin-bottom: 56px">
-        <h2 style="margin: 0 0 20px 0; font-size: 38px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Modern Cooking</h2>
+        <h2 style="margin: 0 0 20px 0; font-size: clamp(28px, 5vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Modern Cooking</h2>
         <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: rgba(20,32,74,0.72); max-width: 720px">Bael specialises in developing products across a range of cooking technologies, with experience across electric cooking, ethanol cooking and improved cookstoves. We develop products for a range of applications.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: clamp(28px, 4vw, 48px)">
         <sc-for list="{{ cookingApps }}" as="app" hint-placeholder-count="3">
           <div>
             <h3 style="margin: 0 0 10px 0; font-size: 19px; font-weight: 600">{{ app.name }}</h3>
@@ -61,10 +67,10 @@
       </div>
 
       <!-- Beyond the cookstove -->
-      <div style="margin-top: 64px; background: #14204a; border-radius: 20px; padding: 56px 56px 60px 56px; color: #fff">
+      <div style="margin-top: 64px; background: #14204a; border-radius: 20px; padding: clamp(28px, 5vw, 56px) clamp(24px, 5vw, 56px) clamp(32px, 5vw, 60px); color: #fff">
         <h3 style="margin: 0 0 8px 0; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Beyond the cookstove</h3>
         <p style="margin: 0 0 40px 0; font-size: 15.5px; line-height: 1.65; color: rgba(255,255,255,0.72); max-width: 640px">We work across all aspects of modern cooking, not just the cookstoves themselves.</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(24px, 4vw, 40px)">
           <sc-for list="{{ cookingEco }}" as="item" hint-placeholder-count="3">
             <div>
               <h4 style="margin: 0 0 10px 0; font-size: 16.5px; font-weight: 600; color: #2fbe4f">{{ item.name }}</h4>
@@ -78,13 +84,13 @@
 
   <!-- MOBILITY -->
   <section id="mobility" data-screen-label="Mobility" style="background: #e3f3e6">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 96px 40px 104px 40px">
+    <div style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(20px, 5vw, 40px) clamp(64px, 9vw, 104px)">
       <div style="margin-bottom: 56px">
-        <h2 style="margin: 0 0 20px 0; font-size: 38px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Mobility</h2>
+        <h2 style="margin: 0 0 20px 0; font-size: clamp(28px, 5vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Mobility</h2>
         <p style="margin: 0; font-size: 16.5px; line-height: 1.7; color: rgba(20,32,74,0.72); max-width: 720px">Bael develops vehicles and electric infrastructure platforms for applications across urban and rural contexts.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 4vw, 48px)">
         <div>
           <h3 style="margin: 0 0 10px 0; font-size: 21px; font-weight: 600">Urban mobility</h3>
           <p style="margin: 0; font-size: 15px; line-height: 1.7; color: rgba(20,32,74,0.68)">Fleet based low&#8209;speed and high&#8209;speed vehicles for short commutes and e&#8209;commerce applications. High&#8209;speed vehicles for ride hailing and commuting applications. Charging infrastructure for fixed battery vehicles as well as for battery swapping.</p>
@@ -99,15 +105,15 @@
 
   <!-- CONTACT / FOOTER -->
   <footer id="contact" data-screen-label="Footer" style="background: #14204a; color: #fff">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 40px 40px">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.12)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 88px) clamp(20px, 5vw, 40px) 40px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 32px 48px; padding-bottom: clamp(40px, 6vw, 64px); border-bottom: 1px solid rgba(255,255,255,0.12)">
         <div style="max-width: 520px">
-          <h2 style="margin: 0 0 16px 0; font-size: 34px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Ready to build something great?</h2>
+          <h2 style="margin: 0 0 16px 0; font-size: clamp(26px, 5.5vw, 34px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Ready to build something great?</h2>
           <p style="margin: 0; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,0.72)">Let&rsquo;s turn your idea into a great product that can be launched into the world.</p>
         </div>
         <a href="mailto:info@baeltechnology.com" style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #14204a; background: #2fbe4f; padding: 16px 30px; border-radius: 999px; white-space: nowrap" style-hover="background: #fff; color: #14204a">info@baeltechnology.com</a>
       </div>
-      <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 32px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 28px; padding-top: 32px">
         <img src="assets/bael-logo-green.png" alt="Bael Technology" style="height: 36px; display: block">
         <nav style="display: flex; gap: 28px">
           <a href="index.html" style="font-size: 13.5px; color: rgba(255,255,255,0.65)" style-hover="color: #2fbe4f">Home</a>

@@ -16,16 +16,22 @@
   a { color: #1eae42; text-decoration: none; }
   a:hover { color: #14204a; }
   ::selection { background: #2fbe4f; color: #fff; }
+  @media (max-width: 720px) {
+    [data-r="navbar"] { height: auto !important; flex-wrap: wrap !important; padding: 14px 20px !important; row-gap: 10px !important; }
+    [data-r="navlinks"] { flex-wrap: wrap !important; gap: 14px 20px !important; }
+    [data-r="lhead"] { display: none !important; }
+    [data-r="lrow"] { grid-template-columns: 1fr !important; gap: 16px !important; padding: 28px 20px !important; }
+  }
 </style>
 </helmet>
 
-<div style="min-width: 1100px; background: #f7f8f5">
+<div style="background: #f7f8f5; overflow-x: hidden">
 
   <!-- NAV -->
   <header data-screen-label="Nav" style="position: sticky; top: 0; z-index: 50; background: rgba(20,32,74,0.96); backdrop-filter: blur(12px)">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; height: 76px; display: flex; align-items: center; justify-content: space-between">
+    <div data-r="navbar" style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); height: 76px; display: flex; align-items: center; justify-content: space-between">
       <a href="index.html" style="display: block"><img src="assets/bael-logo-green.png" alt="Bael Technology" style="height: 42px; display: block"></a>
-      <nav style="display: flex; align-items: center; gap: 36px">
+      <nav data-r="navlinks" style="display: flex; align-items: center; gap: 36px">
         <a href="index.html" style="font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.75)" style-hover="color: #2fbe4f">Home</a>
         <a href="expertise.html" style="font-size: 14.5px; font-weight: 600; color: #fff">Expertise</a>
         <a href="domains.html" style="font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.75)" style-hover="color: #2fbe4f">Domains</a>
@@ -36,25 +42,25 @@
 
   <!-- PAGE HERO -->
   <section data-screen-label="Expertise Hero" style="background: #14204a; color: #fff">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 80px 40px">
+    <div style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 88px) clamp(20px, 5vw, 40px) clamp(52px, 7vw, 80px)">
       <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #2fbe4f; margin-bottom: 18px">Expertise</div>
-      <h1 style="margin: 0 0 24px 0; font-size: 54px; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; max-width: 760px; text-wrap: balance">Our capabilities</h1>
+      <h1 style="margin: 0 0 24px 0; font-size: clamp(34px, 7vw, 54px); line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; max-width: 760px; text-wrap: balance">Our capabilities</h1>
       <p style="margin: 0; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.78); max-width: 640px">Spanning every Technology Readiness Level, from applied research through to manufacturing.</p>
     </div>
   </section>
 
   <!-- TRL LADDER -->
   <section data-screen-label="Capability ladder" style="background: #f7f8f5">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 104px 40px">
+    <div style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 88px) clamp(20px, 5vw, 40px) clamp(64px, 9vw, 104px)">
 
-      <div style="display: grid; grid-template-columns: 110px 1fr 1.35fr; gap: 0 40px; padding: 0 32px 18px 32px">
+      <div data-r="lhead" style="display: grid; grid-template-columns: 110px 1fr 1.35fr; gap: 0 40px; padding: 0 32px 18px 32px">
         <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(20,32,74,0.45)">TRL</div>
         <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(20,32,74,0.45)">Phase</div>
         <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(20,32,74,0.45)">Capabilities</div>
       </div>
       <div style="display: flex; flex-direction: column">
         <sc-for list="{{ levels }}" as="lv" hint-placeholder-count="9">
-          <div style="display: grid; grid-template-columns: 110px 1fr 1.35fr; gap: 0 40px; padding: 36px 32px; background: {{ lv.rowBg }}; border-radius: {{ lv.rowRadius }}; box-shadow: {{ lv.divider }}">
+          <div data-r="lrow" style="display: grid; grid-template-columns: 110px 1fr 1.35fr; gap: 0 40px; padding: 36px 32px; background: {{ lv.rowBg }}; border-radius: {{ lv.rowRadius }}; box-shadow: {{ lv.divider }}">
             <div style="font-size: 40px; font-weight: 700; line-height: 1; color: {{ lv.numColor }}; letter-spacing: -0.02em">{{ lv.nn }}</div>
             <div style="font-size: 16.5px; font-weight: 600; line-height: 1.45; padding-top: 6px; max-width: 380px; text-wrap: pretty">{{ lv.phase }}</div>
             <div style="display: flex; flex-direction: column; gap: 18px; padding-top: 6px">
@@ -74,15 +80,15 @@
 
   <!-- CONTACT / FOOTER -->
   <footer id="contact" data-screen-label="Footer" style="background: #14204a; color: #fff">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 40px 40px">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.12)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 88px) clamp(20px, 5vw, 40px) 40px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 32px 48px; padding-bottom: clamp(40px, 6vw, 64px); border-bottom: 1px solid rgba(255,255,255,0.12)">
         <div style="max-width: 520px">
-          <h2 style="margin: 0 0 16px 0; font-size: 34px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Ready to build something great?</h2>
+          <h2 style="margin: 0 0 16px 0; font-size: clamp(26px, 5.5vw, 34px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Ready to build something great?</h2>
           <p style="margin: 0; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,0.72)">Let&rsquo;s turn your idea into a great product that can be launched into the world.</p>
         </div>
         <a href="mailto:info@baeltechnology.com" style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #14204a; background: #2fbe4f; padding: 16px 30px; border-radius: 999px; white-space: nowrap" style-hover="background: #fff; color: #14204a">info@baeltechnology.com</a>
       </div>
-      <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 32px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 28px; padding-top: 32px">
         <img src="assets/bael-logo-green.png" alt="Bael Technology" style="height: 36px; display: block">
         <nav style="display: flex; gap: 28px">
           <a href="index.html" style="font-size: 13.5px; color: rgba(255,255,255,0.65)" style-hover="color: #2fbe4f">Home</a>
