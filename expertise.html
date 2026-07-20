@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f8f5; font-family: 'Poppins', 'Helvetica Neue', sans-serif; color: #14204a; }
+  a { color: #1eae42; text-decoration: none; }
+  a:hover { color: #14204a; }
+  ::selection { background: #2fbe4f; color: #fff; }
+</style>
+</helmet>
+
+<div style="min-width: 1100px; background: #f7f8f5">
+
+  <!-- NAV -->
+  <header data-screen-label="Nav" style="position: sticky; top: 0; z-index: 50; background: rgba(20,32,74,0.96); backdrop-filter: blur(12px)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; height: 76px; display: flex; align-items: center; justify-content: space-between">
+      <a href="index.html" style="display: block"><img src="assets/bael-logo-green.png" alt="Bael Technology" style="height: 42px; display: block"></a>
+      <nav style="display: flex; align-items: center; gap: 36px">
+        <a href="index.html" style="font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.75)" style-hover="color: #2fbe4f">Home</a>
+        <a href="expertise.html" style="font-size: 14.5px; font-weight: 600; color: #fff">Expertise</a>
+        <a href="domains.html" style="font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.75)" style-hover="color: #2fbe4f">Domains</a>
+        <a href="#contact" style="font-size: 14px; font-weight: 600; color: #0d3a1c; background: #2fbe4f; padding: 11px 22px; border-radius: 999px" style-hover="background: #fff; color: #14204a">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section data-screen-label="Expertise Hero" style="background: #14204a; color: #fff">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 80px 40px">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #2fbe4f; margin-bottom: 18px">Expertise</div>
+      <h1 style="margin: 0 0 24px 0; font-size: 54px; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; max-width: 760px; text-wrap: balance">Our capabilities</h1>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.78); max-width: 640px">Spanning every Technology Readiness Level, from applied research through to manufacturing.</p>
+    </div>
+  </section>
+
+  <!-- TRL LADDER -->
+  <section data-screen-label="Capability ladder" style="background: #f7f8f5">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 104px 40px">
+
+      <div style="display: grid; grid-template-columns: 110px 1fr 1.35fr; gap: 0 40px; padding: 0 32px 18px 32px">
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(20,32,74,0.45)">TRL</div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(20,32,74,0.45)">Phase</div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(20,32,74,0.45)">Capabilities</div>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <sc-for list="{{ levels }}" as="lv" hint-placeholder-count="9">
+          <div style="display: grid; grid-template-columns: 110px 1fr 1.35fr; gap: 0 40px; padding: 36px 32px; background: {{ lv.rowBg }}; border-radius: {{ lv.rowRadius }}; box-shadow: {{ lv.divider }}">
+            <div style="font-size: 40px; font-weight: 700; line-height: 1; color: {{ lv.numColor }}; letter-spacing: -0.02em">{{ lv.nn }}</div>
+            <div style="font-size: 16.5px; font-weight: 600; line-height: 1.45; padding-top: 6px; max-width: 380px; text-wrap: pretty">{{ lv.phase }}</div>
+            <div style="display: flex; flex-direction: column; gap: 18px; padding-top: 6px">
+              <sc-for list="{{ lv.caps }}" as="cap" hint-placeholder-count="1">
+                <div>
+                  <div style="font-size: 15.5px; font-weight: 600; color: #14204a; margin-bottom: 4px">{{ cap.name }}</div>
+                  <div style="font-size: 14.5px; line-height: 1.6; color: rgba(20,32,74,0.68)">{{ cap.desc }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer id="contact" data-screen-label="Footer" style="background: #14204a; color: #fff">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 40px 40px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.12)">
+        <div style="max-width: 520px">
+          <h2 style="margin: 0 0 16px 0; font-size: 34px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em">Ready to build something great?</h2>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,0.72)">Let&rsquo;s turn your idea into a great product that can be launched into the world.</p>
+        </div>
+        <a href="mailto:info@baeltechnology.com" style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #14204a; background: #2fbe4f; padding: 16px 30px; border-radius: 999px; white-space: nowrap" style-hover="background: #fff; color: #14204a">info@baeltechnology.com</a>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 32px">
+        <img src="assets/bael-logo-green.png" alt="Bael Technology" style="height: 36px; display: block">
+        <nav style="display: flex; gap: 28px">
+          <a href="index.html" style="font-size: 13.5px; color: rgba(255,255,255,0.65)" style-hover="color: #2fbe4f">Home</a>
+          <a href="expertise.html" style="font-size: 13.5px; color: rgba(255,255,255,0.65)" style-hover="color: #2fbe4f">Expertise</a>
+          <a href="domains.html" style="font-size: 13.5px; color: rgba(255,255,255,0.65)" style-hover="color: #2fbe4f">Domains</a>
+        </nav>
+        <div style="font-size: 12.5px; color: rgba(255,255,255,0.4)">&copy; 2026 Bael Technology</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const data = [
+      { n: 1, phase: 'Translation of scientific research into applied research and development', caps: [
+        { name: 'Product research', desc: 'User and product research, patent study and understanding of requirements' }
+      ]},
+      { n: 2, phase: 'Producing practical applications of the research', caps: [
+        { name: 'Product concepts', desc: 'Developing product concepts based on the research findings' }
+      ]},
+      { n: 3, phase: 'Creation of a rough proof of concept of the innovation', caps: [
+        { name: 'Proof of concept', desc: 'Fast execution of proof of concept, building test protocols that can reliably demonstrate PoC performance' }
+      ]},
+      { n: 4, phase: 'Developing the product architecture', caps: [
+        { name: 'Product Architecture & Hardware Design', desc: 'Turning ideas into working functional systems' },
+        { name: 'Electronics & Systems Architecture', desc: 'Controls, metering, IoT connected hardware architecture' }
+      ]},
+      { n: 5, phase: 'Building the first prototype that can be tested in the field', caps: [
+        { name: 'Product Integration', desc: 'Bringing together the different components as per the engineering design across hardware and electronics' }
+      ]},
+      { n: 6, phase: 'Field testing under real world conditions of a close to production ready prototype', caps: [
+        { name: 'Prototyping & Engineering Validation', desc: 'Building to spec, testing and validating assumptions, identifying and reducing risks' }
+      ]},
+      { n: 7, phase: 'Qualification and production preparation of the proven prototype', caps: [
+        { name: 'Third party testing and qualification', desc: 'Ensuring sign-off on the production ready prototype through a certification process' },
+        { name: 'Product Engineering pack', desc: 'Incorporating field feedback into final product changes' }
+      ]},
+      { n: 8, phase: 'Getting the product value engineered and production ready', caps: [
+        { name: 'Design For Manufacturing & Assembly (DFMA)', desc: 'Cost optimized value engineered solutions ready for production' },
+        { name: 'Pilot Production & Handover', desc: 'Systemic support for pilot readiness & factory onboarding' }
+      ]},
+      { n: 9, phase: 'Manufacturing the product', caps: [
+        { name: 'End-to-End Scale-up', desc: 'Supports the move from pilot readiness to sustained production through continuous improvement' }
+      ]}
+    ];
+    return {
+      levels: data.map((d) => {
+        const valley = d.n >= 5 && d.n <= 7;
+        // hairline divider between plain rows, drawn as inset shadow so the
+        // green valley band (rows 5-7) reads as one continuous block
+        const divider = d.n === 9 ? 'none'
+          : (d.n === 5 || d.n === 6) ? 'inset 0 -1px 0 rgba(30,174,66,0.22)'
+          : (d.n === 4 || d.n === 7) ? 'none'
+          : 'inset 0 -1px 0 rgba(20,32,74,0.10)';
+        return {
+          ...d,
+          nn: String(d.n).padStart(2, '0'),
+          rowBg: valley ? 'rgba(47,190,79,0.08)' : 'transparent',
+          rowRadius: d.n === 5 ? '16px 16px 0 0' : d.n === 7 ? '0 0 16px 16px' : '0',
+          divider,
+          numColor: valley ? '#1eae42' : 'rgba(20,32,74,0.30)'
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
